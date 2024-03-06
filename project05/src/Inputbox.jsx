@@ -39,28 +39,8 @@ function Inputbox({
             })
     }, [])
 
-    // const fetchCurrencyValue = useCallback((currency) => {
-    //     // fetch('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_9XTUNr31Ld0WhydgvWGCG70M8lttMF8bB1n7udsR')
-    //     //     .then((res0) => {
-    //     //         return res0.json()
-    //     //     })
-    //     //     .then((res1) => {
-    //     //         return res1.data
-    //     //     })
-    //     //     .then((res2) => {
-    //     //         console.log(currency + ' = ' + res2[currency])
-    //     //         setCurrencyvalue(Number(res2[currency]))
-    //     //     })
-    //     for (let i = 0; i < currencies.length; i++) {
-    //         console.log(currencies[i][0])
-    //         currencies[i][0] === currency ? setCurrencyvalue(currencies[i][1]): pass
-    //     }
-    // }, [])
-
     useEffect(() => {
         fetchCurrencies()
-        // console.log(currenciesobject)
-        // setCurrencyvalue(currenciesobject["INR"])
     }, [])
 
     return (

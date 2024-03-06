@@ -43,11 +43,8 @@ function App() {
         <button type="submit" name="convert-button" id="convert-button" onClick={(e) => {
           e.preventDefault()
           // setTotalamountFrom(currencyvalueFrom * amountFrom)
-          // setTotalamountTo((currencyvalueFrom / currencyvalueTo) * amountFrom)
+          // setTotalamountTo(currencyvalueTo * amountTo)
           setAmountTo((currencyvalueTo / currencyvalueFrom) * amountFrom)
-          // console.log(currencyvalueTo)
-          // console.log(currencyvalueFrom)
-          // console.log(amountFrom)
           console.log((currencyvalueTo / currencyvalueFrom) * amountFrom)
         }}>
           Convert
