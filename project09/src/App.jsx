@@ -14,16 +14,12 @@ function App() {
 
   const storeTodo = async (todoObject) => {
     const oldtodosString = localStorage.getItem('todoList')
-    // console.log(oldtodosString)
     let oldtodosArray = JSON.parse(oldtodosString)
 
     oldtodosArray.push(todoObject)
 
     const newtodosString = JSON.stringify(oldtodosArray)
-    // console.log(newtodosString)
     localStorage.setItem('todoList', newtodosString)
-
-    // globalThis.location.reload()
   }
 
   return (
@@ -43,8 +39,8 @@ function App() {
           Add Todo
         </button>
       </div>
-      <div>
-        <ul id="todos">
+      <div className="flex justify-center">
+        <ul id="todos" className="text-center">
           <Todos
             event={event}
             OnEventChange={(event) => {

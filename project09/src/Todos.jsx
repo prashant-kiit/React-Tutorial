@@ -2,34 +2,39 @@ import { useState } from "react"
 
 function Todos({
     event,
-    OnEventChange, }) {
-
+    OnEventChange,}) {
     console.log('Todos Refreshed')
     OnEventChange('RECEIVED')
     console.log(event)
-    
+
     const todosString = localStorage.getItem('todoList')
     const todosArray = JSON.parse(todosString)
     console.log('Current Todos Array')
     console.log(todosArray)
 
-    const storeIsTodoDone = (index, newIsTodoDone) => {
+    const changeIsTodoDone = (index) => {
         const todosString = localStorage.getItem('todoList')
         const todosArray = JSON.parse(todosString)
         console.log('Old Todos Array')
         console.log(todosArray)
-        console.log(index)
-        console.log(todosArray[index].isTodoDone_)
-        // let tempIsTodoDone = todosArray[index].isTodoDone_
-        todosArray[index].isTodoDone_ = newIsTodoDone
+        let tempIsTodoDone = todosArray[index].isTodoDone_
+        todosArray[index].isTodoDone_ = !tempIsTodoDone
         console.log('New Todos Array')
         console.log(todosArray)
         const newtodosString = JSON.stringify(todosArray)
         localStorage.setItem('todoList', newtodosString)
     }
 
+    const deleteTodo = (index) => {
+        const todosString = localStorage.getItem('todoList')
+        const todosArray = JSON.parse(todosString)
+        todosArray.splice(index, 1)
+        const newtodosString = JSON.stringify(todosArray)
+        localStorage.setItem('todoList', newtodosString)
+    }
+    
     const TodosJSX = todosArray.map((todoObject) => {
-        console.log('current todo in map')
+        console.log('Current Todo in .map()')
         console.log(todoObject)
         const [isTodoDone, setIsTodoDone] = useState(todoObject.isTodoDone_)
         // all todos should be unique
@@ -44,25 +49,24 @@ function Todos({
                 {'\t'}
                 <input id={"<input>" + index} type="checkbox"
                     className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded"
-                    checked = {isTodoDone}
+                    checked={isTodoDone}
                     onChange={() => {
                         setIsTodoDone(!isTodoDone)
-                        storeIsTodoDone(index, !isTodoDone)
+                        changeIsTodoDone(index)
                     }}
                 />
                 {'\t'}
                 <button id={"<button>" + index}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
                     onClick={() => {
-                        // localStorage.removeItem(key)
-                        // globalThis.location.reload()
+                        deleteTodo(index)             
+                        globalThis.location.reload()
                     }}>
                     Delete
                 </button>
             </li>
         )
     })
-
     return TodosJSX
 }
 
