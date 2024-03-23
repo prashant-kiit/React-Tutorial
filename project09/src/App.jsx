@@ -34,9 +34,10 @@ function App() {
           onClick={async () => {
             const todoObject = { todoName_: todoName, isTodoDone_: false }
             await storeTodo(todoObject)
+            setTodoName('')
             setEvent('SEND')
           }}>
-          Add Todo
+          Add
         </button>
       </div>
       <div className="flex justify-center">

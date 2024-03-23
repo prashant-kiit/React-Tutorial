@@ -1,9 +1,11 @@
-import { useState } from "react"
+import EditPopUp from "./EditPopUp"
 
 function Todos({
     event,
-    OnEventChange,}) {
+    OnEventChange, }) {
     console.log('Todos Refreshed')
+    // const [event2, setEvent2] = useState('INACTIVE')
+
     OnEventChange('RECEIVED')
     console.log(event)
 
@@ -32,35 +34,42 @@ function Todos({
         const newtodosString = JSON.stringify(todosArray)
         localStorage.setItem('todoList', newtodosString)
     }
-    
+
     const TodosJSX = todosArray.map((todoObject) => {
         console.log('Current Todo in .map()')
         console.log(todoObject)
-        const [isTodoDone, setIsTodoDone] = useState(todoObject.isTodoDone_)
+        // const [isTodoDone, setIsTodoDone] = useState(todoObject.isTodoDone_)
         // all todos should be unique
+        // use useId() hook
         const index = todosArray.indexOf(todoObject)
         return (
             <li key={"<li>" + index}
                 className="max-w-sm rounded overflow-hidden shadow-lg p-4">
                 <label htmlFor={"<input>" + index}
                     className="mb-4 text-1/2 font-extrabold leading-none tracking-tight text-gray-900">
-                    {index + ' . ' + todoObject.todoName_}
+                    {(index + 1) + ' . ' + todoObject.todoName_}
                 </label>
                 {'\t'}
                 <input id={"<input>" + index} type="checkbox"
                     className="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded"
-                    checked={isTodoDone}
+                    checked={todoObject.isTodoDone_}
                     onChange={() => {
-                        setIsTodoDone(!isTodoDone)
+                        // setIsTodoDone(!isTodoDone)
                         changeIsTodoDone(index)
+                        globalThis.location.reload(false)
+                        // setEvent2('ISTODODONE SET')
                     }}
                 />
+                {'\t'}
+                <EditPopUp id = {"<EditPopUp>" + index}
+                index = {index}/>
                 {'\t'}
                 <button id={"<button>" + index}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
                     onClick={() => {
-                        deleteTodo(index)             
-                        globalThis.location.reload()
+                        deleteTodo(index)
+                        globalThis.location.reload(false)
+                        // setEvent2('DELETETODO SET')
                     }}>
                     Delete
                 </button>
