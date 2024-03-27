@@ -1,28 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bulk Connect LinkedIn- POC</title>
 </head>
+
 <body>
-    <!-- First Modal -->
-<div class="fixed inset-0 z-50 flex items-center justify-center">
-    <div class="bg-gray-900 bg-opacity-50 absolute inset-0"></div>
-    <div class="bg-white rounded-lg p-8 z-50">
-      <!-- Modal Content -->
-      <p>First Modal</p>
+    <div>
+        <h1>
+            The script element
+        </h1>
+        <p>
+            Check Here =>
+        </p>
+        <p id="demo">
+        </p>
     </div>
-  </div>
-  
-  <!-- Second Modal -->
-  <div class="fixed inset-0 z-50 flex items-center justify-center">
-    <div class="bg-gray-900 bg-opacity-50 absolute inset-0"></div>
-    <div class="bg-white rounded-lg p-8 z-60">
-      <!-- Modal Content -->
-      <p>Second Modal</p>
+    <div>
+        <button aria-label="Message Ram"> <span class="abc">Message</span>
+        </button>
+        <button aria-label="Message Lakshman"> <span class="abc">Message</span>
+        </button>
+        <button aria-label="Message Bharat"> <span class="abc">Message</span>
+        </button>
+        <button aria-label="Message Shatrughun"> <span class="abc">Message</span>
+        </button>
     </div>
-  </div>
+    <script>
+        function RamButton() {
+            console.log('Ram')
+        }
+        function LakshmanButton() {
+            console.log('Lakshman')
+        }
+        function BharatButton() {
+            console.log('Bharat')
+        }
+        function ShatrughunButton() {
+            console.log('Shatrughun')
+        }
+        document.getElementById("demo").innerHTML = "Hello JavaScript!";
+        document.querySelector('[aria-label="Message Ram"]').addEventListener('click', RamButton);
+        document.querySelector('[aria-label="Message Lakshman"]').addEventListener('click', LakshmanButton);
+        document.querySelector('[aria-label="Message Bharat"]').addEventListener('click', BharatButton);
+        document.querySelector('[aria-label="Message Shatrughun"]').addEventListener('click', ShatrughunButton);
+        const input = document.getElementsByClassName("abc")
+        console.log(typeof input)
+        console.log(input)
+        for (let i = 0; i < input.length; i++) {
+            input[i].click()
+        }
+        // input.map(element => {
+        //     element.click()
+        // });
+    </script>
 </body>
+
 </html>
-  
